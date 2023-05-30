@@ -1,5 +1,7 @@
 class TopicPolicy < ApplicationPolicy
-  def index?
-    user.present?
+  class Scope < Scope
+    def resolve
+      scope.all if user.present?
+    end
   end
 end
