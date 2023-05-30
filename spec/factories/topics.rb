@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :topic do
-    name { "MyString" }
-    image { "MyString" }
+    name { Faker::Name.unique.name }
+    image { Faker::Internet.url }
   end
 end
