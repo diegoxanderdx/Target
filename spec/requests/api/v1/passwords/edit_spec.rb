@@ -1,4 +1,4 @@
-describe 'GET api/v1/users/passwords/edit', type: :request do
+describe 'GET api/v1/users/passwords/edit' do
   let(:user)           { create(:user, password: 'mypass123') }
   let(:password_token) { user.send(:set_reset_password_token) }
   let(:params) do

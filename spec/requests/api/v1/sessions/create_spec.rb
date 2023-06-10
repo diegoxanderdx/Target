@@ -1,4 +1,4 @@
-describe 'POST api/v1/users/sign_in', type: :request do
+describe 'POST api/v1/users/sign_in' do
   subject { post new_user_session_path, params:, as: :json }
 
   let(:password) { 'password' }
@@ -38,7 +38,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
     it 'returns a valid client and access token' do
       token = response.header['access-token']
       client = response.header['client']
-      expect(user.reload.valid_token?(token, client)).to be_truthy
+      expect(user.reload).to be_valid_token(token, client)
     end
   end
 

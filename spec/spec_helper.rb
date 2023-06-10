@@ -30,7 +30,7 @@ RSpec.configure do |config|
   end
   config.include FactoryBot::Syntax::Methods
 
-  config.before :each do
+  config.before do
     ActionMailer::Base.deliveries.clear
   end
 end
