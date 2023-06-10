@@ -19,8 +19,6 @@
 #
 FactoryBot.define do
   factory :target do
-    #topic { Faker::Number.non_zero_digit }
-    #user { Faker::Number.non_zero_digit }
     title { Faker::Lorem.sentence(word_count: 3) }
     radius { Faker::Number.decimal(l_digits: 2) }
     latitude { Faker::Number.decimal(l_digits: 3, r_digits: 4) }

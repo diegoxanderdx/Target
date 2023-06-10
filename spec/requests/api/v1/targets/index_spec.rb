@@ -1,6 +1,6 @@
 describe 'GET api/v1/targets', type: :request do
   let!(:targets) { create_list(:target, 4) }
-  
+
   context 'with user logged in' do
     let!(:user) { create(:user) }
     let!(:user_targets) { create_list(:target, 2, user:) }
