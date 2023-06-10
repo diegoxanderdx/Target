@@ -1,6 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe Api::V1::TopicsController do
+describe 'GET api/v1/topics', type: :request do
   describe 'with user logged in' do
     let!(:topics) { create_list(:topic, 4) }
 

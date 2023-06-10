@@ -14,11 +14,11 @@
 #
 require 'rails_helper'
 
-RSpec.describe Topic, type: :model do
+RSpec.describe Topic do
   describe 'validations' do
     it 'validate presence of required fields' do
-      should validate_presence_of(:name)
-      should validate_presence_of(:image)
+      expect(subject).to validate_presence_of(:name)
+      expect(subject).to validate_presence_of(:image)
     end
   end
 end
