@@ -13,6 +13,8 @@
 #  index_topics_on_name  (name) UNIQUE
 #
 class Topic < ApplicationRecord
+  has_many :targets, dependent: :restrict_with_exception
+
   validates :name, presence: true, uniqueness: true
   validates :image, presence: true
 end

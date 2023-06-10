@@ -41,6 +41,10 @@ describe User do
     end
   end
 
+  describe 'Associations' do
+    it { should have_many(:targets) }
+  end
+
   context 'when was created with regular login' do
     let!(:user) { create(:user, first_name: nil, last_name: nil) }
     let(:full_name) { user.full_name }
