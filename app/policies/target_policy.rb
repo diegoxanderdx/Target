@@ -1,9 +1,9 @@
 class TargetPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    def resolve
-      scope.all if user.present?
-    end
+    # def resolve
+    #   scope.all if user.present?
+    # end
   end
 
   def index?
@@ -11,6 +11,10 @@ class TargetPolicy < ApplicationPolicy
   end
 
   def create?
+    user.present?
+  end
+
+  def destroy?
     user.present?
   end
 end

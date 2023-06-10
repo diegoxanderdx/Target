@@ -17,6 +17,12 @@ module Api
         end
       end
 
+      def destroy
+        @target = current_user.targets.find(params[:id])
+        authorize @target
+        @target.destroy!
+      end
+
       private
 
       def target_params

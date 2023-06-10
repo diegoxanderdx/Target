@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :targets, except: %i[new edit]
+      resources :targets, only: %i[index create destroy]
       resources :topics, only: :index
       get :status, to: 'api#status'
 
