@@ -24,4 +24,12 @@ class Target < ApplicationRecord
   validates :title, :radius, :latitude, :longitude, presence: true
   validates :radius, numericality: { greater_than: 0 }
   validates :latitude, :longitude, numericality: true
+  validate :user_targets_count, unless: -> { user.nil? }, on: :create
+
+  private
+
+  def user_targets_count
+    return if user.targets.count < 3
+    errors.add(:user, I18n.t('model.target.errors.invalid_amount'))
+  end
 end
