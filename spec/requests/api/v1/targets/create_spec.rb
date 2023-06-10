@@ -23,7 +23,7 @@ describe 'POST api/v1/targets', type: :request do
 
     context 'when the user has the maximum number of targets' do
       let(:user) { create(:user) }
-      let!(:user_targets)  { create_list(:target, 3, user:) }
+      let!(:user_targets) { create_list(:target, 3, user:) }
       subject { post api_v1_targets_path, params: create_params, headers: auth_headers, as: :json }
 
       it 'does not create a target' do

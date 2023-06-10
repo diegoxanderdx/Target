@@ -30,6 +30,7 @@ class Target < ApplicationRecord
 
   def user_targets_count
     return if user.targets.count < 3
+
     errors.add(:user, I18n.t('model.target.errors.invalid_amount'))
   end
 end
