@@ -1,6 +1,7 @@
-describe 'GET api/v1/users/:id', type: :request do
-  let(:user) { create(:user) }
+describe 'GET api/v1/users/:id' do
   subject { get api_v1_user_path, headers: auth_headers, as: :json }
+
+  let(:user) { create(:user) }
 
   it_behaves_like 'there must not be a Set-Cookie in Header'
 

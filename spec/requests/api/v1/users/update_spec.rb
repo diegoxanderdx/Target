@@ -1,4 +1,4 @@
-describe 'PUT api/v1/user/', type: :request do
+describe 'PUT api/v1/user/' do
   let(:user)             { create(:user) }
   let(:api_v1_user_path) { '/api/v1/user' }
 
@@ -28,12 +28,12 @@ describe 'PUT api/v1/user/', type: :request do
 
     it 'does not return success' do
       put api_v1_user_path, params: params, headers: auth_headers, as: :json
-      expect(response).to_not have_http_status(:success)
+      expect(response).not_to have_http_status(:success)
     end
 
     it 'does not update the user' do
       put api_v1_user_path, params: params, headers: auth_headers, as: :json
-      expect(user.reload.email).to_not eq(params[:email])
+      expect(user.reload.email).not_to eq(params[:email])
     end
 
     it 'returns the error' do
