@@ -31,11 +31,13 @@
 
 describe User do
   describe 'validations' do
-    subject { build :user }
+    subject { build(:user) }
+
     it { is_expected.to validate_uniqueness_of(:uid).scoped_to(:provider) }
 
     context 'when was created with regular login' do
-      subject { build :user }
+      subject { build(:user) }
+
       it { is_expected.to validate_uniqueness_of(:email).case_insensitive.scoped_to(:provider) }
       it { is_expected.to validate_presence_of(:email) }
     end
@@ -64,8 +66,8 @@ describe User do
 
       it 'creates the user' do
         expect {
-          User.from_social_provider('provider', params)
-        }.to change { User.count }.by(1)
+          described_class.from_social_provider('provider', params)
+        }.to change(described_class, :count).by(1)
       end
     end
 
@@ -74,7 +76,7 @@ describe User do
       let(:params) { attributes_for(:user).merge('id' => 'user@example.com') }
 
       it 'returns the given user' do
-        expect(User.from_social_provider('provider', params))
+        expect(described_class.from_social_provider('provider', params))
           .to eq(user)
       end
     end
