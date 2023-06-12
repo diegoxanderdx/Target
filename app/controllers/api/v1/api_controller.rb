@@ -19,6 +19,10 @@ module Api
         render json: { online: true }
       end
 
+      def pundit_user
+        current_user
+      end
+
       private
 
       def render_not_found(exception)

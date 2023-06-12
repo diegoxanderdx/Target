@@ -5,6 +5,7 @@ gem 'rails', '~> 7.0.4.3'
 
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
+gem 'api_scaffold'
 gem 'arctic_admin', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
@@ -24,7 +25,7 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'yaaf', '~> 2.2'
-gem 'api_scaffold'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

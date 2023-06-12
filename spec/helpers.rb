@@ -21,4 +21,8 @@ module Helpers
   def client_header
     auth_headers['client']
   end
+
+  def payload
+    JSON.parse(response.body)
+  end
 end

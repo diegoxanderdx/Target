@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     passwords: 'api/v1/passwords'
   }
 
-  namespace :api do
-    namespace :v1, defaults: { format: :json } do
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :topics, only: :index
       get :status, to: 'api#status'
 
       devise_scope :user do
