@@ -10,12 +10,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :targets, only: :create
+      resources :targets, except: :create
       resources :topics, only: :index
       get :status, to: 'api#status'
 
       devise_scope :user do
-        resource :user, only: :create
+        resource :user, only: %i[update show]
       end
       resources :settings, only: [] do
         get :must_update, on: :collection
