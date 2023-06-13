@@ -4,6 +4,7 @@ describe 'POST api/v1/targets', type: :request do
     { 'target' => { 'title' => 'target test', 'radius' => 4, 'latitude' => 35.987,
                     'longitude' => -24.564, 'topic_id' => topic.id } }
   end
+  let(:created_target) { Target.last }
 
   context 'with user logged in' do
     describe 'POST create' do
@@ -18,6 +19,16 @@ describe 'POST api/v1/targets', type: :request do
       it 'creates the target' do
         expect { subject }.to change(Target, :count).from(0).to(1)
         expect(response).to be_created
+      end
+
+      it 'returns the created target with all fields' do
+        subject
+        expect(payload).to eq(created_target.as_json)
+        expect(created_target.title).to eq(created_target.title)
+        expect(created_target.radius).to eq(created_target.radius)
+        expect(created_target.latitude).to eq(created_target.latitude)
+        expect(created_target.longitude).to eq(created_target.longitude)
+        expect(created_target.topic_id).to eq(created_target.topic_id)
       end
     end
   end
