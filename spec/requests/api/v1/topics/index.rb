@@ -19,7 +19,7 @@ describe 'GET api/v1/topics', type: :request do
     end
   end
 
-  describe 'with not user logged in' do
+  describe 'with user not logged in' do
     let!(:topics) { create_list(:topic, 4) }
 
     before do
