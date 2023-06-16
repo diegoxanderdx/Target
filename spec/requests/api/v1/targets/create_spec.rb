@@ -1,9 +1,17 @@
 describe 'POST api/v1/targets', type: :request do
   let(:topic) { create(:topic) }
   let!(:create_params) do
-    { 'target' => { 'title' => 'target test', 'radius' => 4, 'latitude' => 35.987,
-                    'longitude' => -24.564, 'topic_id' => topic.id } }
+    {
+      'target' => {
+        'title' => 'target test',
+        'radius' => 4.0,
+        'latitude' => 35.987,
+        'longitude' => -24.564,
+        'topic_id' => topic.id
+      }
+    }
   end
+  let(:created_target) { Target.last }
 
   context 'with user logged in' do
     describe 'POST create' do
@@ -17,7 +25,16 @@ describe 'POST api/v1/targets', type: :request do
 
       it 'creates the target' do
         expect { subject }.to change(Target, :count).from(0).to(1)
-        expect(response).to be_created
+      end
+
+      it 'returns the created target with all fields' do
+        subject
+        expect(payload['id']).to eq(created_target.id)
+        expect(payload['title']).to eq(created_target.title)
+        expect(payload['radius']).to eq(created_target.radius)
+        expect(payload['latitude']).to eq(created_target.latitude)
+        expect(payload['longitude']).to eq(created_target.longitude)
+        expect(payload['topic_id']).to eq(created_target.topic_id)
       end
     end
 
@@ -42,7 +59,7 @@ describe 'POST api/v1/targets', type: :request do
     end
   end
 
-  context 'with not user logged in' do
+  context 'with user not logged in' do
     describe 'POST create' do
       subject { post api_v1_targets_path, params: create_params, as: :json }
 

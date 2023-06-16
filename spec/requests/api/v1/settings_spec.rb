@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-describe 'GET api/v1/settings/must_update', type: :request do
+describe 'GET api/v1/settings/must_update' do
+  subject { get must_update_api_v1_settings_path, params: }
+
   let(:params) do
     {
       device_version: '1.0'
     }
   end
-  subject { get must_update_api_v1_settings_path, params: }
 
   context 'with correct settings' do
     let!(:setting_version) { create(:setting_version) }

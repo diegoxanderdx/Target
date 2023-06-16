@@ -15,7 +15,7 @@ describe 'GET api/v1/targets', type: :request do
     end
   end
 
-  context 'with not user logged in' do
+  context 'with user not logged in' do
     subject { get api_v1_targets_path }
 
     it 'returns a not authorized response' do

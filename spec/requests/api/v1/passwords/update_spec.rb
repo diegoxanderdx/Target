@@ -1,4 +1,4 @@
-describe 'PUT api/v1/users/passwords/', type: :request do
+describe 'PUT api/v1/users/passwords/' do
   let(:user)           { create(:user, password: 'mypass123') }
   let(:password_token) { user.send(:set_reset_password_token) }
   let(:headers) do
@@ -33,7 +33,7 @@ describe 'PUT api/v1/users/passwords/', type: :request do
     it 'does not change the password if confirmation does not match' do
       params[:password_confirmation] = 'anotherpass'
       put user_password_path, params: params, headers: headers, as: :json
-      expect(response.status).to eq(422)
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 end
