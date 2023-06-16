@@ -20,15 +20,9 @@
 FactoryBot.define do
   factory :target do
     title { Faker::Lorem.sentence(word_count: 3) }
-<<<<<<< HEAD
-    radius { Faker::Number.decimal(l_digits: 2) }
-    latitude { Faker::Number.decimal(l_digits: 3, r_digits: 4) }
-    longitude { Faker::Number.decimal(l_digits: 3, r_digits: 4) }
-=======
     radius { Faker::Number.between(from: 1.0, to: 600_000.0).round(2) }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
->>>>>>> RSLC-2
     association :user, factory: :user
     association :topic, factory: :topic
   end
