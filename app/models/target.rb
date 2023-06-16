@@ -6,9 +6,9 @@
 #  topic_id   :bigint           not null
 #  user_id    :bigint           not null
 #  title      :string           not null
-#  radius     :decimal(, )      not null
-#  latitude   :decimal(, )      not null
-#  longitude  :decimal(, )      not null
+#  radius     :float            not null
+#  latitude   :float            not null
+#  longitude  :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

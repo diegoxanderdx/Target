@@ -6,9 +6,9 @@
 #  topic_id   :bigint           not null
 #  user_id    :bigint           not null
 #  title      :string           not null
-#  radius     :decimal(, )      not null
-#  latitude   :decimal(, )      not null
-#  longitude  :decimal(, )      not null
+#  radius     :float            not null
+#  latitude   :float            not null
+#  longitude  :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -19,11 +19,11 @@
 #
 FactoryBot.define do
   factory :target do
-    topic { Faker::Number.non_zero_digit }
-    user { Faker::Number.non_zero_digit }
     title { Faker::Lorem.sentence(word_count: 3) }
-    radius { Faker::Number.decimal(l_digits: 2) }
-    latitude { Faker::Number.decimal(l_digits: 3, r_digits: 4) }
-    longitude { Faker::Number.decimal(l_digits: 3, r_digits: 4) }
+    radius { Faker::Number.between(from: 1.0, to: 600_000.0).round(2) }
+    latitude { Faker::Address.latitude }
+    longitude { Faker::Address.longitude }
+    association :user, factory: :user
+    association :topic, factory: :topic
   end
 end
