@@ -1,4 +1,4 @@
-describe 'POST api/v1/users/', type: :request do
+describe 'POST api/v1/users/' do
   let(:user)            { User.last }
   let(:failed_response) { 422 }
 
@@ -53,7 +53,7 @@ describe 'POST api/v1/users/', type: :request do
       let(:email) { 'invalid_email' }
 
       it 'does not create a user' do
-        expect { subject }.not_to change { User.count }
+        expect { subject }.not_to change(User, :count)
       end
 
       it 'does not return a successful response' do

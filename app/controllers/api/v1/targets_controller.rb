@@ -9,12 +9,7 @@ module Api
       def create
         authorize Target
         @target = current_user.targets.create!(target_params)
-
-        if @target.save
-          render json: @target, status: :created, location: [:api, :v1, @target]
-        else
-          render json: @target.errors, status: :unprocessable_entity
-        end
+        render json: @target, status: :created
       end
 
       def destroy
