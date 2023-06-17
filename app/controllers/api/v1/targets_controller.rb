@@ -9,7 +9,6 @@ module Api
       def create
         authorize Target
         @target = current_user.targets.create!(target_params)
-        render json: @target, status: :created
       end
 
       private
