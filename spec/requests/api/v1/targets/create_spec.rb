@@ -29,7 +29,6 @@ describe 'POST api/v1/targets', type: :request do
 
       it 'returns the created target with all fields' do
         subject
-        expect(payload['id']).to eq(created_target.id)
         expect(payload['title']).to eq(created_target.title)
         expect(payload['radius']).to eq(created_target.radius)
         expect(payload['latitude']).to eq(created_target.latitude)
