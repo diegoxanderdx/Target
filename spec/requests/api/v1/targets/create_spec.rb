@@ -11,6 +11,28 @@ describe 'POST api/v1/targets', type: :request do
       }
     }
   end
+  let!(:wrong_radius_param) do
+    {
+      'target' => {
+        'title' => 'target test',
+        'radius' => 'string',
+        'latitude' => 35.987,
+        'longitude' => -24.564,
+        'topic_id' => topic.id
+      }
+    }
+  end
+  let!(:blank_title_param) do
+    {
+      'target' => {
+        'title' => '',
+        'radius' => 4.0,
+        'latitude' => 35.987,
+        'longitude' => -24.564,
+        'topic_id' => topic.id
+      }
+    }
+  end
   let(:created_target) { Target.last }
 
   context 'with user logged in' do
@@ -54,6 +76,40 @@ describe 'POST api/v1/targets', type: :request do
       it 'returns an error message' do
         subject
         expect(json[:errors][:user].first).to eq(I18n.t('model.target.errors.invalid_amount'))
+      end
+    end
+  end
+
+  context 'with user logged in, wrong params' do
+    describe 'POST create with blank param' do
+      let(:user) { create(:user) }
+      subject do
+        post api_v1_targets_path, params: blank_title_param, headers: auth_headers, as: :json
+      end
+
+      it 'returns a failed response' do
+        subject
+        expect(response).to be_bad_request
+      end
+
+      it 'dont create the target' do
+        expect { subject }.not_to change { Target.count }
+      end
+    end
+
+    describe 'POST create with wrong param' do
+      let(:user) { create(:user) }
+      subject do
+        post api_v1_targets_path, params: wrong_radius_param, headers: auth_headers, as: :json
+      end
+
+      it 'returns a failed response' do
+        subject
+        expect(response).to be_bad_request
+      end
+
+      it 'dont create the target' do
+        expect { subject }.not_to change { Target.count }
       end
     end
   end
