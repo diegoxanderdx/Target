@@ -1,5 +1,6 @@
 describe 'POST api/v1/targets', type: :request do
   let(:topic) { create(:topic) }
+  let(:user) { create(:user) }
   let!(:create_params) do
     {
       'target' => {
@@ -11,35 +12,12 @@ describe 'POST api/v1/targets', type: :request do
       }
     }
   end
-  let!(:wrong_radius_param) do
-    {
-      'target' => {
-        'title' => 'target test',
-        'radius' => 'string',
-        'latitude' => 35.987,
-        'longitude' => -24.564,
-        'topic_id' => topic.id
-      }
-    }
-  end
-  let!(:blank_title_param) do
-    {
-      'target' => {
-        'title' => '',
-        'radius' => 4.0,
-        'latitude' => 35.987,
-        'longitude' => -24.564,
-        'topic_id' => topic.id
-      }
-    }
-  end
   let(:created_target) { Target.last }
+
+  subject { post api_v1_targets_path, params: create_params, headers: auth_headers, as: :json }
 
   context 'with user logged in' do
     describe 'POST create' do
-      let(:user) { create(:user) }
-      subject { post api_v1_targets_path, params: create_params, headers: auth_headers, as: :json }
-
       it 'returns a successful response' do
         subject
         expect(response).to be_successful
@@ -81,10 +59,17 @@ describe 'POST api/v1/targets', type: :request do
   end
 
   context 'with user logged in, wrong params' do
-    describe 'POST create with blank param' do
-      let(:user) { create(:user) }
-      subject do
-        post api_v1_targets_path, params: blank_title_param, headers: auth_headers, as: :json
+    describe 'POST create with wrong param' do
+      let!(:create_params) do
+        {
+          'target' => {
+            'title' => 'target test',
+            'radius' => 'a string',
+            'latitude' => 35.987,
+            'longitude' => -24.564,
+            'topic_id' => topic.id
+          }
+        }
       end
 
       it 'returns a failed response' do
@@ -97,10 +82,17 @@ describe 'POST api/v1/targets', type: :request do
       end
     end
 
-    describe 'POST create with wrong param' do
-      let(:user) { create(:user) }
-      subject do
-        post api_v1_targets_path, params: wrong_radius_param, headers: auth_headers, as: :json
+    describe 'POST create with blank param' do
+      let!(:create_params) do
+        {
+          'target' => {
+            'title' => '',
+            'radius' => 4.0,
+            'latitude' => 35.987,
+            'longitude' => -24.564,
+            'topic_id' => topic.id
+          }
+        }
       end
 
       it 'returns a failed response' do
