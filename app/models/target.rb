@@ -26,11 +26,13 @@ class Target < ApplicationRecord
   validates :latitude, :longitude, numericality: true
   validate :user_targets_count, unless: -> { user.nil? }, on: :create
 
+  MAX_TARGETS = 3
+
   private
 
   def user_targets_count
-    return if user.targets.count < 3
+    return if user.targets.count < MAX_TARGETS
 
-    errors.add(:user, I18n.t('model.target.errors.invalid_amount'))
+    errors.add(:user, I18n.t('model.target.errors.max_targets'))
   end
 end

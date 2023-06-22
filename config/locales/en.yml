@@ -13,4 +13,4 @@ en:
   model:
     target:
       errors:
-        invalid_amount: There are already 3 targets
+        max_targets: Already has the maximum number of targets
