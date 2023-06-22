@@ -53,7 +53,7 @@ describe 'POST api/v1/targets', type: :request do
 
       it 'returns an error message' do
         subject
-        expect(json[:errors][:user].first).to eq(I18n.t('model.target.errors.invalid_amount'))
+        expect(json[:errors][:user].first).to eq(I18n.t('model.target.errors.max_targets'))
       end
     end
   end
