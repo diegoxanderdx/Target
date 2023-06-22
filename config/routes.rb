@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resources :targets, only: :create
       resources :topics, only: :index
       get :status, to: 'api#status'
 

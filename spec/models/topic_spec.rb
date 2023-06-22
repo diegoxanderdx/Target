@@ -21,4 +21,8 @@ RSpec.describe Topic do
       expect(subject).to validate_presence_of(:image)
     end
   end
+
+  describe 'Associations' do
+    it { should have_many(:targets) }
+  end
 end
