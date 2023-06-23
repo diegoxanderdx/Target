@@ -10,3 +10,7 @@ en:
       invalid_content_type: Invalid content type header
       missing_param: A required param is missing
       not_found: Couldn't find the record
+  model:
+    target:
+      errors:
+        max_targets: Already has the maximum number of targets
