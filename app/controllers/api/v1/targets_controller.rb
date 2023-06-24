@@ -12,9 +12,9 @@ module Api
       end
 
       def destroy
+        @target = current_user.targets.find(params[:id])
         return if @target.blank?
 
-        @target = current_user.targets.find(params[:id])
         authorize @target
         @target.destroy!
       end
