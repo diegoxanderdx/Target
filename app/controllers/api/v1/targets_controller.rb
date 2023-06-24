@@ -12,6 +12,8 @@ module Api
       end
 
       def destroy
+        return if @target.blank?
+
         @target = current_user.targets.find(params[:id])
         authorize @target
         @target.destroy!

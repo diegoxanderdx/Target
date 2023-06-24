@@ -12,7 +12,7 @@ describe 'DELETE api/v1/targets/id', type: :request do
   end
 
   it 'deletes the target' do
-    expect { subject }.to change(user.targets, :count).from(3).to(2)
+    expect { subject }.to change(user.targets, :count).by(-1)
   end
 
   describe 'when the target does not belong to the logged user' do
