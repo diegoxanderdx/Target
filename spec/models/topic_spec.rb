@@ -4,7 +4,6 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
-#  image      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -18,7 +17,6 @@ RSpec.describe Topic do
   describe 'validations' do
     it 'validate presence of required fields' do
       expect(subject).to validate_presence_of(:name)
-      expect(subject).to validate_presence_of(:image)
     end
   end
 
