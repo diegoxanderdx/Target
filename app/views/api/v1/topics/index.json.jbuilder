@@ -1,1 +1,1 @@
-json.array! @targets, partial: 'target', as: :target
+json.array! @topics, partial: 'topic', as: :topic
