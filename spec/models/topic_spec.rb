@@ -20,11 +20,11 @@ RSpec.describe Topic do
     it 'validate presence of required fields' do
       expect(subject).to validate_presence_of(:name)
     end
-    
+
     it 'validates that an icon is attached' do
       subject.icon.detach
       subject.valid?
-      expect(subject.errors[:icon]).to include("must be attached")
+      expect(subject.errors[:icon]).to include('must be attached')
     end
   end
 

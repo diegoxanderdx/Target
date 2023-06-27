@@ -20,21 +20,3 @@ FactoryBot.define do
     end
   end
 end
-
-# require 'action_dispatch/testing/test_process'
-
-# FactoryBot.define do
-#   factory :topic do
-#     name { Faker::Lorem.word }
-
-#     # Crea un archivo de imagen temporal para adjuntar
-#     transient do
-#       icon_image { ActionDispatch::Http::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'topic_icon.jpg'), 'image/jpeg') }
-#     end
-
-#     # Asocia el archivo de imagen a la fábrica
-#     after(:build) do |topic, evaluator|
-#       topic.icon.attach(io: evaluator.icon_image.open, filename: evaluator.icon_image.original_filename)
-#     end
-#   end
-# end

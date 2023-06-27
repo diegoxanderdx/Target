@@ -18,14 +18,14 @@ describe 'GET api/v1/topics', type: :request do
     end
 
     it 'returns a successful response' do
-        expect(response).to be_successful
-      end
+      expect(response).to be_successful
+    end
 
     it 'returns the correct format' do
       json_response = payload
 
       json_response.each do |topic|
-        expect(topic.keys).to match_array(["id", "label", "icon"])
+        expect(topic.keys).to match_array(%w[id label icon])
       end
     end
   end

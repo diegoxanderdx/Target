@@ -23,6 +23,6 @@ class Topic < ApplicationRecord
   end
 
   def icon_attached
-    errors.add(:icon, "must be attached") unless icon.attached?
+    errors.add(:icon, 'must be attached') unless icon.attached?
   end
 end
