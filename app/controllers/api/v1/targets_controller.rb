@@ -11,6 +11,14 @@ module Api
         @target = current_user.targets.create!(target_params)
       end
 
+      def destroy
+        @target = current_user.targets.find(params[:id])
+        return if @target.blank?
+
+        authorize @target
+        @target.destroy!
+      end
+
       private
 
       def target_params
