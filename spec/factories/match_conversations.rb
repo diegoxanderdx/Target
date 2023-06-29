@@ -11,8 +11,9 @@
 #
 FactoryBot.define do
   factory :match_conversation do
-    user1_id { 1 }
-    user2_id { 1 }
-    target_id { 1 }
+    target
+
+    association :user1, factory: :user
+    association :user2, factory: :user
   end
 end

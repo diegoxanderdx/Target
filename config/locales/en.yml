@@ -14,3 +14,7 @@ en:
     target:
       errors:
         max_targets: Already has the maximum number of targets
+  model:
+    match_conversation:
+      errors:
+        same_user_match: Users must be different
