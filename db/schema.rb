@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_020325) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_28_003758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -100,6 +100,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_020325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["error_group_id"], name: "index_exception_hunter_errors_on_error_group_id"
+  end
+
+  create_table "match_conversations", force: :cascade do |t|
+    t.integer "user1_id"
+    t.integer "user2_id"
+    t.integer "target_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settings", force: :cascade do |t|
