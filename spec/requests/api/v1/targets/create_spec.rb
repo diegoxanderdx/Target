@@ -1,14 +1,15 @@
 describe 'POST api/v1/targets', type: :request do
-  let(:topic) { create(:topic) }
-  let(:user) { create(:user) }
+  let!(:topic) { create(:topic) }
+  let!(:user) { create(:user) }
   let!(:create_params) do
     {
       'target' => {
         'title' => 'target test',
         'radius' => 4.0,
         'latitude' => 35.987,
-        'longitude' => -24.564,
-        'topic_id' => topic.id
+        'longitude' => 24.564,
+        'topic_id' => topic.id,
+        'user_id' => user.id
       }
     }
   end
@@ -55,6 +56,28 @@ describe 'POST api/v1/targets', type: :request do
         subject
         expect(json[:errors][:user].first).to eq(I18n.t('model.target.errors.max_targets'))
       end
+    end
+  end
+
+  context 'when matches with another target' do
+    let!(:user2) { create(:user) }
+    let!(:secont_target) do
+      {
+        'target' => {
+          'title' => 'target2',
+          'radius' => 4.0,
+          'latitude' => 35.987,
+          'longitude' => 24.564,
+          'topic_id' => topic.id,
+          'user_id' => user2.id
+        }
+      }
+    end
+    let(:match_conversation_created) { MatchConversation.last }
+    let(:match_target) { MatchConversation.where(first_user_id: user.id).first }
+
+    it 'create a match' do
+      expect { subject }.to change { MatchConversation.count }.by(1)
     end
   end
 

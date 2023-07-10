@@ -9,6 +9,9 @@ module Api
       def create
         authorize Target
         @target = current_user.targets.create!(target_params)
+        # byebug
+        match_service = MatchService.new(@target, current_user)
+        @matches = match_service.perform
       end
 
       def destroy

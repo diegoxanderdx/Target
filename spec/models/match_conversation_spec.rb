@@ -25,7 +25,7 @@ RSpec.describe MatchConversation, type: :model do
       let(:user)  { create(:user) }
       let(:match_conversation) { build(:match_conversation, user1_id: user.id, user2_id: user.id) }
 
-      it 'is not valid' do
+      it 'do not create a conversation' do
         expect(match_conversation).to_not be_valid
       end
 

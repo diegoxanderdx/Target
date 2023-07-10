@@ -1,7 +1,7 @@
 # == Schema Information
-#
+
 # Table name: targets
-#
+
 #  id         :bigint           not null, primary key
 #  topic_id   :bigint           not null
 #  user_id    :bigint           not null
@@ -11,15 +11,16 @@
 #  longitude  :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#
+
 # Indexes
-#
+
 #  index_targets_on_topic_id  (topic_id)
 #  index_targets_on_user_id   (user_id)
-#
+
 class Target < ApplicationRecord
   belongs_to :topic
   belongs_to :user
+  has_many :match_conversations, dependent: :destroy
 
   validates :title, :radius, :latitude, :longitude, presence: true
   validates :radius, numericality: { greater_than: 0 }
@@ -27,6 +28,12 @@ class Target < ApplicationRecord
   validate :user_targets_count, unless: -> { user.nil? }, on: :create
 
   MAX_TARGETS = 3
+
+  acts_as_mappable default_units: :kms,
+                   default_formula: :sphere,
+                   distance_field_name: :distance,
+                   lat_column_name: :latitude,
+                   lng_column_name: :longitude
 
   private
 
