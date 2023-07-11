@@ -1,6 +1,6 @@
 describe 'Admin see targets', type: :feature do
   let!(:admin_user) { create(:admin_user) }
-  let!(:targets) { create_list(:target, 10) }
+  let!(:targets) { create_list(:target, 4) }
   let(:first_target) { targets.first }
   let(:last_target) { targets.last }
   subject { visit admin_targets_path }
