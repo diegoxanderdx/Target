@@ -21,8 +21,8 @@ FactoryBot.define do
   factory :target do
     title { Faker::Lorem.sentence(word_count: 3) }
     radius { Faker::Number.between(from: 1.0, to: 600_000.0).round(2) }
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    latitude { Faker::Number.decimal(l_digits: 2, r_digits: 6) }
+    longitude { Faker::Number.decimal(l_digits: 2, r_digits: 6) }
     association :user, factory: :user
     association :topic, factory: :topic
   end
