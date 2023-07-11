@@ -12,7 +12,7 @@ describe 'Admin see targets', type: :feature do
     expect(page).to have_content('Targets')
   end
 
-  it 'shows the first target' do
+  it 'index the first target' do
     subject
     expect(page).to have_content(first_target.id)
     expect(page).to have_content(first_target.topic.name)
@@ -25,7 +25,7 @@ describe 'Admin see targets', type: :feature do
     expect(page).to have_content(first_target.updated_at.strftime('%B %d, %Y %H:%M'))
   end
 
-  it 'shows the last target' do
+  it 'index the last target' do
     subject
     expect(page).to have_content(last_target.id)
     expect(page).to have_content(last_target.topic.name)
