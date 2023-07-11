@@ -25,7 +25,7 @@ end
     topic_id: Topic.all.sample.id,
     title: Faker::Lorem.sentence,
     radius: rand(1..100),
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude
+    latitude: Faker::Number.decimal(l_digits: 2, r_digits: 6),
+    longitude: Faker::Number.decimal(l_digits: 2, r_digits: 6)
   )
 end
