@@ -21,13 +21,14 @@ class MatchService
 
   def create_conversations_with(matches)
     matches.each do |target|
-      unless conversation_exists?(target.user, @user)
-        Conversation.create!(user1: target.user, user2: @user)
+      target_user = target.user
+      unless conversation_exists?(@user, target_user)
+        Conversation.create!(user1: @user, user2: target_user)
       end
     end
   end
 
-  def conversation_exists?(first_user, second_user)
-    Conversation.exists?(user1: [first_user, second_user], user2: [first_user, second_user])
+  def conversation_exists?(current_user, other_user)
+    Conversation.exists?(user1: [current_user, other_user], user2: [current_user, other_user])
   end
 end
