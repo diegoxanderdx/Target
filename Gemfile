@@ -14,6 +14,7 @@ gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', github: 'rootstrap/exception_hunter'
+gem 'geokit-rails'
 gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 4.0'
@@ -31,7 +32,7 @@ gem 'yaaf', '~> 2.2'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
