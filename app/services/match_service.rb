@@ -27,7 +27,7 @@ class MatchService
     end
   end
 
-  def conversation_exists?(user1, user2)
-    Conversation.exists?(user1: [user1, user2], user2: [user1, user2])
+  def conversation_exists?(first_user, second_user)
+    Conversation.exists?(user1: [first_user, second_user], user2: [first_user, second_user])
   end
 end
