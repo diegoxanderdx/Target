@@ -8,7 +8,14 @@ module Api
 
       def create
         authorize Target
-        @target = current_user.targets.create!(target_params)
+        @target = current_user.targets.build(target_params)
+
+        if @target.save
+          @matches = MatchService.new(@target, current_user).perform
+          render json: @target
+        else
+          render json: { errors: @target.errors }, status: :unprocessable_entity
+        end
       end
 
       def destroy

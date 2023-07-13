@@ -201,6 +201,10 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
+    geokit (1.14.0)
+    geokit-rails (2.5.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     has_scope (0.8.0)
@@ -498,6 +502,7 @@ DEPENDENCIES
   exception_hunter!
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker (~> 2.13)
+  geokit-rails
   i18n-tasks (~> 0.9.30)
   image_processing (~> 1.2)
   jbuilder (~> 2.10)

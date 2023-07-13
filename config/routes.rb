@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :targets, only: %i[index create destroy]
       resources :topics, only: :index
+      resources :conversations, only: [:index]
       get :status, to: 'api#status'
 
       devise_scope :user do
