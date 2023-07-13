@@ -40,6 +40,8 @@ RSpec.describe Conversation, type: :model do
   it 'check error message' do
     conversation = Conversation.new(user1: user, user2: user)
     conversation.validate
-    expect(conversation.errors.messages[:user2]).to include(I18n.t('model.conversation.errors.same_user'))
+    expect(conversation.errors.messages[:user2]).to include(
+      I18n.t('model.conversation.errors.same_user')
+    )
   end
 end

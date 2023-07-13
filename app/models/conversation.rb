@@ -13,8 +13,8 @@
 #  index_conversations_on_user1_and_user2  (user1,user2) UNIQUE
 #
 class Conversation < ApplicationRecord
-  belongs_to :user1, class_name: 'User', foreign_key: 'user1'
-  belongs_to :user2, class_name: 'User', foreign_key: 'user2'
+  belongs_to :user1, class_name: 'User', foreign_key: 'user1', inverse_of: :conversations
+  belongs_to :user2, class_name: 'User', foreign_key: 'user2', inverse_of: :conversations
 
   validates :user1, uniqueness: { scope: :user2 }
   validate :users_are_not_the_same

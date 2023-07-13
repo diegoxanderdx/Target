@@ -3,8 +3,12 @@ RSpec.describe 'POST /api/targets', type: :request do
   let!(:user) { create(:user) }
   let!(:user2) { create(:user) }
   let!(:user3) { create(:user) }
-  let!(:target1) { create(:target, topic_id: topic.id, user: user2, latitude: 37.987, longitude: -26.564) }
-  let!(:target2) { create(:target, topic_id: topic.id, user: user3, latitude: 37.987, longitude: -26.564) }
+  let!(:target1) do
+    create(:target, topic_id: topic.id, user: user2, latitude: 37.987, longitude: -26.564)
+  end
+  let!(:target2) do
+    create(:target, topic_id: topic.id, user: user3, latitude: 37.987, longitude: -26.564)
+  end
 
   let(:params) do
     {
@@ -19,7 +23,7 @@ RSpec.describe 'POST /api/targets', type: :request do
   end
   let(:created_target) { Target.last }
 
-  subject { post api_v1_targets_path, params: params, headers: auth_headers, as: :json }
+  subject { post api_v1_targets_path, params:, headers: auth_headers, as: :json }
 
   context 'with authenticated user' do
     let(:created_target) { Target.last }
@@ -49,7 +53,7 @@ RSpec.describe 'POST /api/targets', type: :request do
 
   context 'when the user has the maximum number of targets' do
     let(:user) { create(:user) }
-    let!(:user_targets) { create_list(:target, 3, user: user) }
+    let!(:user_targets) { create_list(:target, 3, user:) }
 
     it 'does not create a target' do
       expect { subject }.not_to change { Target.count }
@@ -116,7 +120,7 @@ RSpec.describe 'POST /api/targets', type: :request do
 
   context 'with not authenticated user' do
     describe 'POST create' do
-      subject { post api_v1_targets_path, params: params, as: :json }
+      subject { post api_v1_targets_path, params:, as: :json }
 
       it 'returns a not authorized response' do
         subject
