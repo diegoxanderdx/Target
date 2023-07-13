@@ -4,7 +4,6 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string           not null
-#  image      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -15,6 +14,9 @@
 FactoryBot.define do
   factory :topic do
     name { Faker::Name.unique.name }
-    image { Faker::Internet.url }
+    after(:build) do |topic|
+      topic.icon.attach(io: File.open('spec/support/images/topic_feature.jpg'),
+                        filename: 'topic_feature.jpg')
+    end
   end
 end

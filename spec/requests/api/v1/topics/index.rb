@@ -15,7 +15,18 @@ describe 'GET api/v1/topics', type: :request do
     it 'returns all topics' do
       expect(payload).not_to be_empty
       expect(payload.size).to eq(topics.size)
+    end
+
+    it 'returns a successful response' do
       expect(response).to be_successful
+    end
+
+    it 'returns the correct format' do
+      json_response = payload
+
+      json_response.each do |topic|
+        expect(topic.keys).to match_array(%w[id label icon])
+      end
     end
   end
 
