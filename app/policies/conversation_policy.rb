@@ -1,5 +1,5 @@
 class ConversationPolicy < ApplicationPolicy
   def index?
-    user.conversations.any?
+    user.present?
   end
 end
