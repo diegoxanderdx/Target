@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_21_194322) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_12_230215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -60,6 +60,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_194322) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user1", null: false
+    t.integer "user2", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user1", "user2"], name: "index_conversations_on_user1_and_user2", unique: true
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
