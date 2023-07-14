@@ -32,6 +32,7 @@
 class User < ApplicationRecord
   has_many :targets, dependent: :destroy
   has_many :conversations, inverse_of: :user1, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -52,6 +53,16 @@ class User < ApplicationRecord
     where(provider:, uid: user_params['id']).first_or_create! do |user|
       user.password = Devise.friendly_token[0, 20]
       user.assign_attributes user_params.except('id')
+    end
+  end
+
+  PLACEHOLDER_AVATAR_URL = 'https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg'.freeze
+
+  def avatar_url
+    if avatar.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true)
+    else
+      PLACEHOLDER_AVATAR_URL
     end
   end
 
