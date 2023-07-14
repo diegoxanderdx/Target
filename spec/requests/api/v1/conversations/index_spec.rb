@@ -1,6 +1,6 @@
 RSpec.describe 'GET api/v1/conversations', type: :request do
   let!(:user) { create(:user) }
-  let!(:conversation) { create_list(:conversation, 2, user1: user) }
+  let!(:conversation) { create_list(:conversation, 3, user1: user) }
 
   subject { get api_v1_conversations_path, headers: auth_headers, as: :json }
 
