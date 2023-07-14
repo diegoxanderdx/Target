@@ -39,6 +39,8 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  PLACEHOLDER_AVATAR_URL = 'https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg'.freeze
+
   validates :uid, uniqueness: { scope: :provider }
 
   before_validation :init_uid
@@ -55,8 +57,6 @@ class User < ApplicationRecord
       user.assign_attributes user_params.except('id')
     end
   end
-
-  PLACEHOLDER_AVATAR_URL = 'https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg'.freeze
 
   def avatar_url
     if avatar.attached?

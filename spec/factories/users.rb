@@ -39,7 +39,7 @@ FactoryBot.define do
     uid        { Faker::Internet.uuid }
     after(:build) do |user|
       user.avatar.attach(io: File.open('spec/support/images/avatar.jpg'),
-                        filename: 'avatar.jpg')
+                         filename: 'avatar.jpg')
     end
   end
 end
